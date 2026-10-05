@@ -553,25 +553,27 @@ function ArrayEditor({ title, items, update, fields, imageKey, textareaKey, extr
             />
           )}
           {imageKey && (
-            <label className="yk-field">
-              <span>Image</span>
-              <ImageChooser
-                value={item[imageKey]}
-                onChange={(v)=>{
+            <>
+              <label className="yk-field">
+                <span>Image</span>
+                <ImageChooser
+                  value={item[imageKey]}
+                  onChange={(v)=>{
+                    const next=[...items];
+                    next[index]={...next[index],[imageKey]:v};
+                    update(next);
+                  }}
+                />
+              </label>
+              <UploadField
+                label="Téléverser une image"
+                onUpload={(url)=>{
                   const next=[...items];
-                  next[index]={...next[index],[imageKey]:v};
+                  next[index]={...next[index],[imageKey]:url};
                   update(next);
                 }}
               />
-            </label>
-            <UploadField
-              label="Téléverser une image"
-              onUpload={(url)=>{
-                const next=[...items];
-                next[index]={...next[index],[imageKey]:url};
-                update(next);
-              }}
-            />
+            </>
           )}
         </div>
       ))}
