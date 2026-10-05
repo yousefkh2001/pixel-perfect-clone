@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Eye, EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -33,7 +33,7 @@ function AdminPage() {
     void checkSession();
   }, []);
 
-  async function login(event: React.FormEvent<HTMLFormElement>) {
+  async function login(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setBusy(true);
     setError("");
