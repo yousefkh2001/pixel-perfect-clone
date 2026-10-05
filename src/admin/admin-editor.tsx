@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { DragEvent } from "react";
 import { ExternalLink, GripVertical, LogOut, Plus, RotateCcw, Save, Trash2, Upload } from "lucide-react";
 import contentDefaults from "@/content/published-page.json";
+import { WebsitePreview } from "@/components/cv/EditableHomepage";
 
 const STORAGE_KEY = "yk-website-draft-v2";
 
@@ -107,6 +108,19 @@ function SectionTitle({ children }) {
   return <div className="yk-inspector-title">{children}</div>;
 }
 
+function SelectField({ label, value, onChange, options }) {
+  return (
+    <label className="yk-field">
+      <span>{label}</span>
+      <select value={value ?? ""} onChange={(event) => onChange(event.target.value)}>
+        {options.map(([optionValue, optionLabel]) => (
+          <option key={optionValue} value={optionValue}>{optionLabel}</option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 function UploadField({ label, onUpload }) {
   const [busy, setBusy] = useState(false);
 
@@ -160,6 +174,7 @@ export default function AdminEditor({ onLogout }) {
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [dragIndex, setDragIndex] = useState(null);
   const [status, setStatus] = useState("Brouillon local");
+  const [previewWidth, setPreviewWidth] = useState("desktop");
 
   const order = data.sectionOrder || [];
   const selectedType = order[selectedIndex];
@@ -335,23 +350,17 @@ export default function AdminEditor({ onLogout }) {
 
         <section className="yk-editor__canvas">
           <div className="yk-preview-toolbar">
-            <span>Structure de la page</span>
-            <span className="yk-preview-note">Le site public conserve son design</span>
+            <span>Aperçu en direct</span>
+            <div className="yk-preview-devices">
+              <button type="button" className={previewWidth === "desktop" ? "is-active" : ""} onClick={() => setPreviewWidth("desktop")} title="Desktop">Desktop</button>
+              <button type="button" className={previewWidth === "tablet" ? "is-active" : ""} onClick={() => setPreviewWidth("tablet")} title="Tablet">Tablet</button>
+              <button type="button" className={previewWidth === "mobile" ? "is-active" : ""} onClick={() => setPreviewWidth("mobile")} title="Mobile">Mobile</button>
+            </div>
           </div>
-
-          <div className="yk-canvas-page">
-            {order.map((type, index) => (
-              <button
-                key={type + "-" + index}
-                type="button"
-                className={"yk-canvas-block" + (index === selectedIndex ? " is-selected" : "")}
-                onClick={() => setSelectedIndex(index)}
-              >
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{SECTION_LABELS[type] || type}</strong>
-                <small>Modifier à droite</small>
-              </button>
-            ))}
+          <div className={"yk-preview-stage yk-preview-stage--" + previewWidth}>
+            <div className="yk-preview-frame">
+              <WebsitePreview data={data} />
+            </div>
           </div>
         </section>
 
@@ -402,6 +411,7 @@ export default function AdminEditor({ onLogout }) {
               update={(value) => update(["services"], value)}
               imageKey="img"
               fields={[["title","Titre"],["short","Sous-titre"],["desc","Description"]]}
+              extraSelect={{ key: "icon", label: "Icône", options: [["bath","Plomberie"],["heater","Chauffage"],["flame","Gaz"],["fan","Climatisation"],["wrench","Outil"]] }}
             />
           )}
 
@@ -486,7 +496,16 @@ export default function AdminEditor({ onLogout }) {
             </div>
           )}
 
-          {(selectedType === "header" || selectedType === "footer" || selectedType === "quickstrip") && (
+          {selectedType === "header" && (
+            <div className="yk-inspector">
+              <SectionTitle>Header</SectionTitle>
+              <Field label="Nom" value={data.header?.name} onChange={(v)=>update(["header","name"],v)} />
+              <Field label="Titre professionnel" value={data.header?.professionalTitle} onChange={(v)=>update(["header","professionalTitle"],v)} />
+              <Field label="URL du CV" value={data.header?.cvUrl} onChange={(v)=>update(["header","cvUrl"],v)} />
+            </div>
+          )}
+
+          {(selectedType === "footer" || selectedType === "quickstrip") && (
             <InfoBox
               title={SECTION_LABELS[selectedType]}
               text="Cette section réutilise le design actuel du site. Le contenu principal est piloté par les réglages associés."
@@ -498,7 +517,7 @@ export default function AdminEditor({ onLogout }) {
   );
 }
 
-function ArrayEditor({ title, items, update, fields, imageKey, textareaKey }) {
+function ArrayEditor({ title, items, update, fields, imageKey, textareaKey, extraSelect }) {
   return (
     <div className="yk-inspector">
       <SectionTitle>{title}</SectionTitle>
@@ -521,6 +540,18 @@ function ArrayEditor({ title, items, update, fields, imageKey, textareaKey }) {
               }}
             />
           ))}
+          {extraSelect && (
+            <SelectField
+              label={extraSelect.label}
+              value={item[extraSelect.key]}
+              options={extraSelect.options}
+              onChange={(v)=>{
+                const next=[...items];
+                next[index]={...next[index],[extraSelect.key]:v};
+                update(next);
+              }}
+            />
+          )}
           {imageKey && (
             <label className="yk-field">
               <span>Image</span>
@@ -533,6 +564,14 @@ function ArrayEditor({ title, items, update, fields, imageKey, textareaKey }) {
                 }}
               />
             </label>
+            <UploadField
+              label="Téléverser une image"
+              onUpload={(url)=>{
+                const next=[...items];
+                next[index]={...next[index],[imageKey]:url};
+                update(next);
+              }}
+            />
           )}
         </div>
       ))}
@@ -543,6 +582,7 @@ function ArrayEditor({ title, items, update, fields, imageKey, textareaKey }) {
           const first = {};
           fields.forEach(([key])=>{ first[key]=""; });
           if (imageKey) first[imageKey]="hero";
+          if (extraSelect) first[extraSelect.key]=extraSelect.options[0][0];
           update([...items, first]);
         }}
       >
