@@ -12,37 +12,45 @@ const serviceIcon = { plomb: Bath, chauf: Heater, gaz: Flame, clim: Fan } as con
 export function Hero() {
   return (
     <section id="accueil" className="relative overflow-hidden bg-navy">
-      {/* Mobile: photo as background */}
-      <img src={images.hero} alt="Youcef Khelifi, plombier-chauffagiste" className="absolute inset-x-0 top-0 h-[60%] w-full object-cover object-[70%_center] lg:hidden" />
-      <div className="hero-overlay absolute inset-0 lg:hidden" />
+      {/* Desktop: use the uploaded wide banner exactly as a full-width hero. */}
+      <div className="relative hidden lg:block">
+        <img
+          src={resolveImage(hero.image)}
+          alt="Youcef Khelifi — Plombier-chauffagiste"
+          className="block h-auto w-full object-cover"
+        />
+      </div>
 
-      <div className="relative lg:grid lg:min-h-[560px] lg:grid-cols-[46fr_54fr]">
-        <div className="container-site flex flex-col justify-end pb-10 pt-[46vw] sm:pt-[38vw] lg:mr-0 lg:max-w-none lg:justify-center lg:py-16 lg:pr-8">
+      {/* Mobile: keep the original responsive hero composition with the original portrait photo. */}
+      <div className="relative lg:hidden">
+        <img
+          src={resolveImage(hero.mobileImage || "hero")}
+          alt="Youcef Khelifi, plombier-chauffagiste"
+          className="absolute inset-x-0 top-0 h-[60%] w-full object-cover object-[70%_center]"
+        />
+        <div className="hero-overlay absolute inset-0" />
+
+        <div className="container-site relative flex min-h-[640px] flex-col justify-end pb-10 pt-[46vw]">
           <span className="w-fit rounded-md border border-brand px-3 py-1 text-[0.7rem] font-extrabold tracking-wide text-brand">
-            ARTISAN QUALIFIÉ
+            {hero.eyebrow}
           </span>
-          <h1 className="mt-5 text-[2.6rem] font-extrabold leading-[0.95] tracking-tight text-background sm:text-6xl xl:text-7xl">
-            YOUCEF <span className="text-brand">KHELIFI</span>
+          <h1 className="mt-5 text-[2.6rem] font-extrabold leading-[0.95] tracking-tight text-background sm:text-6xl">
+            {hero.firstName} <span className="text-brand">{hero.lastName}</span>
           </h1>
-          <p className="mt-4 text-lg font-bold text-background sm:text-xl xl:text-2xl">Plombier-chauffagiste | Installateur CVC</p>
+          <p className="mt-4 text-lg font-bold text-background sm:text-xl">{hero.title}</p>
           <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed text-background/85">
-            Spécialisé en plomberie sanitaire, chauffage central, réseaux de gaz et climatisation. Une expérience solide sur des chantiers résidentiels et institutionnels.
+            {hero.description}
           </p>
           <div className="mt-6 flex flex-col gap-3 text-sm text-background/90 sm:flex-row sm:items-center sm:gap-5">
-            <span className="flex items-center gap-2"><MapPin className="size-5 shrink-0 fill-brand text-navy" />{contact.location}</span>
+            <span className="flex items-center gap-2">
+              <MapPin className="size-5 shrink-0 fill-brand text-navy" />{hero.location}
+            </span>
             <span className="hidden h-5 w-px bg-background/40 sm:block" />
-            <span className="flex items-center gap-2"><Navigation className="size-5 shrink-0 fill-brand text-brand" />Disponible pour une opportunité en Europe à partir de 2027</span>
+            <span className="flex items-center gap-2">
+              <Navigation className="size-5 shrink-0 fill-brand text-brand" />{hero.availability}
+            </span>
           </div>
           <ContactButtons className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap" itemClass="sm:min-w-[7.5rem]" />
-        </div>
-
-        <div className="relative hidden lg:block">
-          <img src={images.hero} alt="Youcef Khelifi dans une chaufferie" className="absolute inset-0 h-full w-full object-cover object-[35%_center]" />
-          <div className="hero-fade absolute inset-0" />
-          <div className="absolute bottom-8 right-8 flex items-center gap-3 rounded-md bg-background px-5 py-4 shadow-xl">
-            <CalendarDays className="size-7 text-navy" />
-            <p className="text-sm leading-tight text-navy"><b className="text-base font-extrabold">7+</b> ans<br /><span className="text-muted-foreground">d'expérience</span></p>
-          </div>
         </div>
       </div>
     </section>
