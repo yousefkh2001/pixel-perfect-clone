@@ -1,0 +1,161 @@
+* { box-sizing: border-box; }
+
+.yk-editor {
+  min-height: 100vh;
+  background: #f3f6f8;
+  color: #15263a;
+  font-family: Manrope, Inter, system-ui, sans-serif;
+}
+
+.yk-editor__topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 66px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fff;
+  border-bottom: 1px solid #dfe5ea;
+}
+
+.yk-editor__brand { display: flex; align-items: center; gap: 10px; }
+.yk-editor__mark {
+  width: 38px; height: 38px; display: grid; place-items: center; border-radius: 8px;
+  background: #0b1f36; color: #fff; font-size: 13px; font-weight: 900;
+}
+.yk-editor__brand div { display: flex; flex-direction: column; gap: 2px; }
+.yk-editor__brand strong { font-size: 12px; letter-spacing: -.02em; }
+.yk-editor__brand span { font-size: 9px; color: #687586; }
+
+.yk-editor__top-actions { display: flex; align-items: center; gap: 7px; overflow-x: auto; }
+.yk-editor__status { color: #687586; font-size: 9px; white-space: nowrap; margin-right: 4px; }
+.yk-editor__top-btn {
+  min-height: 34px; display: inline-flex; align-items: center; gap: 6px; padding: 0 10px;
+  border: 1px solid #dfe5ea; border-radius: 6px; background: #fff; color: #0b1f36;
+  text-decoration: none; font: 800 9px Manrope, Inter, system-ui, sans-serif; cursor: pointer; white-space: nowrap;
+}
+.yk-editor__top-btn:hover { background: #f7f9fb; }
+.yk-editor__top-btn--publish { background: #f7c62f; border-color: #f7c62f; color: #111; }
+.yk-editor__top-btn--danger { color: #934747; }
+
+.yk-editor__body {
+  display: grid;
+  grid-template-columns: 250px minmax(360px, 1fr) 330px;
+  min-height: calc(100vh - 66px);
+}
+.yk-editor__left, .yk-editor__right { background: #fff; }
+.yk-editor__left { border-right: 1px solid #dfe5ea; padding: 18px 12px; overflow-y: auto; }
+.yk-editor__right { border-left: 1px solid #dfe5ea; padding: 18px; overflow-y: auto; max-height: calc(100vh - 66px); }
+.yk-editor__panel-title { color: #0b1f36; font-size: 12px; font-weight: 900; }
+.yk-editor__hint { margin-top: 4px; margin-bottom: 13px; color: #8a95a2; font-size: 9px; }
+
+.yk-editor__section-list { display: grid; gap: 4px; }
+.yk-section-row {
+  min-height: 36px; display: grid; grid-template-columns: 16px 25px minmax(0,1fr) 20px; align-items: center;
+  gap: 5px; padding: 4px 6px; border: 1px solid transparent; border-radius: 6px; cursor: pointer; user-select: none;
+}
+.yk-section-row:hover { background: #f7f9fb; }
+.yk-section-row.is-selected { background: #f5f8fb; border-color: #d6e0e8; }
+.yk-drag-icon { color: #9ba5af; cursor: grab; }
+.yk-section-number { color: #9aa5b0; font-size: 8px; font-weight: 800; }
+.yk-section-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #15263a; font-size: 10px; font-weight: 800; }
+.yk-section-delete {
+  width: 20px; height: 20px; display: grid; place-items: center; border: 0; border-radius: 4px;
+  background: transparent; color: #a26a6a; cursor: pointer;
+}
+.yk-section-delete:hover { background: #fff0f0; }
+
+.yk-add-box { margin-top: 18px; padding-top: 15px; border-top: 1px solid #e8edf1; }
+.yk-add-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 10px; }
+.yk-add-grid button, .yk-add-item {
+  min-height: 30px; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  border: 1px solid #e1e7ec; border-radius: 5px; background: #fff; color: #304255;
+  font: 800 8px Manrope, Inter, system-ui, sans-serif; cursor: pointer;
+}
+.yk-add-grid button:hover, .yk-add-item:hover { background: #f8fafb; border-color: #cfd8e0; }
+
+.yk-editor__canvas { padding: 16px; min-width: 0; }
+.yk-preview-toolbar {
+  min-height: 42px; display: flex; align-items: center; justify-content: space-between; padding: 0 12px;
+  margin-bottom: 12px; background: #fff; border: 1px solid #dfe5ea; border-radius: 8px;
+}
+.yk-preview-toolbar > span { font-size: 10px; font-weight: 800; color: #526170; }
+.yk-preview-note { color: #98a3ae !important; font-weight: 600 !important; }
+
+.yk-canvas-page {
+  width: min(100%, 980px); min-height: 850px; margin: 0 auto; padding: 14px;
+  border: 1px solid #dde4e9; border-radius: 10px; background: #fff;
+}
+.yk-canvas-block {
+  width: 100%; min-height: 70px; display: grid; grid-template-columns: 38px 170px minmax(0,1fr);
+  align-items: center; gap: 12px; margin: 5px 0; padding: 0 18px; border: 1px solid #edf1f4;
+  border-radius: 7px; background: #fff; color: #0b1f36; text-align: left; cursor: pointer;
+}
+.yk-canvas-block:hover { border-color: #d2dbe2; }
+.yk-canvas-block.is-selected { border: 2px solid #f7c62f; background: #fffdf2; }
+.yk-canvas-block span { color: #9ba5af; font-size: 9px; font-weight: 900; }
+.yk-canvas-block strong { font-size: 12px; }
+.yk-canvas-block small { color: #8995a1; font-size: 9px; }
+
+.yk-inspector { display: grid; gap: 12px; margin-top: 12px; }
+.yk-inspector-title {
+  padding-top: 8px; border-top: 1px solid #e8edf1; color: #0b1f36; font-size: 10px;
+  font-weight: 900; text-transform: uppercase; letter-spacing: .07em;
+}
+.yk-field { display: grid; gap: 5px; }
+.yk-field > span { color: #596877; font-size: 9px; font-weight: 800; }
+.yk-field input, .yk-field textarea, .yk-field select {
+  width: 100%; min-height: 34px; padding: 8px 9px; border: 1px solid #dfe5ea; border-radius: 5px;
+  outline: none; background: #fff; color: #15263a; font: 500 10px Manrope, Inter, system-ui, sans-serif;
+}
+.yk-field textarea { resize: vertical; min-height: 80px; }
+.yk-field input:focus, .yk-field textarea:focus, .yk-field select:focus {
+  border-color: #f7c62f; box-shadow: 0 0 0 2px rgba(247,198,47,.14);
+}
+.yk-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.yk-admin-image-field { display: grid; gap: 6px; }
+.yk-repeat-card {
+  padding: 11px; border: 1px solid #e0e6eb; border-radius: 7px; background: #fbfcfd; display: grid; gap: 9px;
+}
+.yk-repeat-card__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.yk-repeat-card__top strong { color: #0b1f36; font-size: 10px; }
+.yk-repeat-card__top button {
+  width: 24px; height: 24px; display: grid; place-items: center; border: 0; border-radius: 4px;
+  background: #fff0f0; color: #9a4e4e; cursor: pointer;
+}
+.yk-add-item { width: 100%; min-height: 34px; background: #fff; }
+
+.yk-upload-field { position: relative; min-height: 34px; display: grid; gap: 5px; }
+.yk-upload-field > span { font-size: 9px; color: #596877; font-weight: 800; }
+.yk-upload-field div {
+  min-height: 34px; display: flex; align-items: center; justify-content: center; gap: 6px;
+  border: 1px dashed #cfd8e0; border-radius: 6px; color: #5d6a79; font: 800 9px Manrope, Inter, system-ui, sans-serif;
+}
+.yk-upload-field input { position: absolute; inset: 22px 0 0; opacity: 0; cursor: pointer; }
+
+.yk-info-box { margin-top: 12px; padding: 14px; border-radius: 7px; background: #f6f8fa; border: 1px solid #e0e6eb; }
+.yk-info-box strong { font-size: 12px; color: #0b1f36; }
+.yk-info-box p { margin: 7px 0 0; color: #687586; font-size: 10px; line-height: 1.5; }
+
+@media (max-width: 1150px) {
+  .yk-editor__body { grid-template-columns: 220px minmax(300px, 1fr) 300px; }
+}
+@media (max-width: 900px) {
+  .yk-editor__body { grid-template-columns: 1fr; }
+  .yk-editor__left, .yk-editor__right { border: 0; }
+  .yk-editor__left { border-bottom: 1px solid #dfe5ea; }
+  .yk-editor__right { border-top: 1px solid #dfe5ea; max-height: none; }
+  .yk-canvas-page { min-height: 500px; }
+}
+@media (max-width: 600px) {
+  .yk-editor__topbar { padding: 8px 10px; align-items: flex-start; flex-direction: column; }
+  .yk-editor__top-actions { width: 100%; }
+  .yk-editor__canvas { padding: 8px; }
+  .yk-canvas-block { grid-template-columns: 28px 1fr; min-height: 58px; }
+  .yk-canvas-block small { display: none; }
+  .yk-field-row { grid-template-columns: 1fr; }
+}
