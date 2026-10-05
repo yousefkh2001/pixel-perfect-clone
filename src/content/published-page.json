@@ -7,6 +7,7 @@
     "about",
     "services",
     "materials",
+    "tools",
     "experience",
     "realisations",
     "formation",
@@ -51,28 +52,32 @@
       "title": "Plomberie sanitaire",
       "short": "Installation et réparation",
       "desc": "Installation, réparation, appareils sanitaires",
-      "img": "plomberie"
+      "img": "plomberie",
+      "icon": "bath"
     },
     {
       "key": "chauf",
       "title": "Chauffage central",
       "short": "Installation et entretien",
       "desc": "Radiateurs, chaudières, circulateurs, entretien",
-      "img": "chauffage"
+      "img": "chauffage",
+      "icon": "heater"
     },
     {
       "key": "gaz",
       "title": "Réseaux de gaz",
       "short": "Installation et contrôle",
       "desc": "Installation, contrôle d'étanchéité, dépannage",
-      "img": "gaz"
+      "img": "gaz",
+      "icon": "flame"
     },
     {
       "key": "clim",
       "title": "Climatisation split",
       "short": "Pose et maintenance",
       "desc": "Pose, entretien, charge en fluide",
-      "img": "climatisation"
+      "img": "climatisation",
+      "icon": "fan"
     }
   ],
   "materials": [
