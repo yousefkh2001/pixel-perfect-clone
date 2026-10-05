@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 
 import { Header as SiteHeader } from "@/components/cv/Header";
+import { Hero as OriginalHero } from "@/components/cv/Sections";
 import { cn } from "@/lib/utils";
 import {
   contact,
@@ -594,7 +595,7 @@ function renderSection(type: string, data: EditableContent, textIndex: { value: 
     case "header":
       return <SiteHeader key={type} />;
     case "hero":
-      return <DynamicHero key={type} data={data} />;
+      return <OriginalHero key={type} />;
     case "quickstrip":
       return <QuickStrip key={type} data={data} />;
     case "about":
