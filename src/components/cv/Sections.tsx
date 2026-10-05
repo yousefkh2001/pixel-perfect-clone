@@ -3,7 +3,7 @@ import {
   ArrowRight, MapPin, Navigation, CalendarDays, ShieldCheck, Users, Plane, Car, Bath, Heater, Flame, Fan,
   Award, GraduationCap, Hammer, Languages, CheckCircle2, Phone, Mail, ImageIcon,
 } from "lucide-react";
-import { contact, images, services, materials, tools, experience, projects, projectCategories, languages, safety } from "@/content/site";
+import { contact, hero, images, resolveImage, services, materials, tools, experience, projects, projectCategories, languages, safety } from "@/content/site";
 import { ContactButtons, SectionHead, btn } from "./ui";
 import { cn } from "@/lib/utils";
 
