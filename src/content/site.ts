@@ -21,47 +21,30 @@ import pCe from "@/assets/p-chauffeeau.jpg";
 import pageContent from "./published-page.json";
 
 const assetMap: Record<string, string> = {
-  hero,
-  about1,
-  about2,
-  about3,
-  plomberie: sPlomb,
-  chauffage: sChauf,
-  gaz: sGaz,
-  climatisation: sClim,
-  multicouche: mMulti,
-  ppr: mPpr,
-  pvc: mPvc,
-  cuivre: mCu,
-  "acier-noir": mAcier,
-  polyfuseur: tPoly,
-  chalumeau: tChal,
-  sertir: tSert,
-  manifold: tMani,
-  pompe: tPomp,
-  collecteur: pColl,
-  "chauffe-eau": pCe,
+  hero, about1, about2, about3,
+  plomberie: sPlomb, chauffage: sChauf, gaz: sGaz, climatisation: sClim,
+  multicouche: mMulti, ppr: mPpr, pvc: mPvc, cuivre: mCu, "acier-noir": mAcier,
+  polyfuseur: tPoly, chalumeau: tChal, sertir: tSert, manifold: tMani, pompe: tPomp,
+  collecteur: pColl, "chauffe-eau": pCe,
 };
 
 export const resolveImage = (value?: string) => {
   if (!value) return hero;
-  if (/^(https?:\/\/|\/)$/i.test(value)) return value;
-  return assetMap[value] ?? value;
+  if (/^(https?:\/\/|\/)/i.test(value)) return value;
+  return assetMap[value] ?? hero;
 };
 
 export const contact = {
   phone: pageContent.contact?.phone ?? "+213 673 802 142",
-  phoneHref:
-    "tel:" + (pageContent.contact?.phone ?? "+213 673 802 142").replace(/\s+/g, ""),
-  whatsapp: pageContent.contact?.whatsapp
-    ? "https://wa.me/" + pageContent.contact.whatsapp.replace(/\D/g, "")
-    : "https://wa.me/213673802142",
+  phoneHref: "tel:" + (pageContent.contact?.phone ?? "+213 673 802 142").replace(/\s+/g, ""),
+  whatsapp: "https://wa.me/" + (pageContent.contact?.whatsapp ?? "213673802142").replace(/\D/g, ""),
   email: pageContent.contact?.email ?? "yousefkhelifi2803@gmail.com",
   cvUrl: pageContent.contact?.cvUrl || "#",
   location: pageContent.hero?.location ?? "Barika, Algérie",
 };
 
 export const header = pageContent.header;
+export const hero = pageContent.hero;
 
 export const nav = [
   { id: "accueil", label: "Accueil" },
@@ -83,18 +66,10 @@ export const images = {
     : "",
 };
 
-export const hero = pageContent.hero;
-
 export const services = (pageContent.services ?? []).map((s) => ({
   ...s,
   img: resolveImage(s.img),
-})) as Array<{
-  key: string;
-  title: string;
-  short: string;
-  desc: string;
-  img: string;
-}>;
+}));
 
 export const materials = (pageContent.materials ?? []).map((m) => ({
   ...m,
@@ -109,12 +84,7 @@ export const tools = (pageContent.tools ?? []).map((t) => ({
 export const experience = pageContent.experience ?? [];
 
 export const projectCategories = [
-  "Tous",
-  "Plomberie",
-  "Chauffage",
-  "Gaz",
-  "Climatisation",
-  "Chantiers",
+  "Tous", "Plomberie", "Chauffage", "Gaz", "Climatisation", "Chantiers",
 ] as const;
 
 export const projects = (pageContent.realisations?.projects ?? []).map((p) => ({
@@ -123,27 +93,16 @@ export const projects = (pageContent.realisations?.projects ?? []).map((p) => ({
 }));
 
 export const realisations = pageContent.realisations;
-
 export const formation = pageContent.formation;
-
+export const about = pageContent.about;
 export const languagesSafety = pageContent.languagesSafety;
 export const languages = pageContent.languagesSafety?.languages ?? [];
 export const safety = pageContent.languagesSafety?.safety ?? [];
-
-export const about = pageContent.about;
 export const finalContact = pageContent.contact;
 
 export const sectionOrder = pageContent.sectionOrder ?? [
-  "header",
-  "hero",
-  "quickstrip",
-  "about",
-  "services",
-  "materials",
-  "experience",
-  "realisations",
-  "formation",
-  "languagesSafety",
-  "contact",
-  "footer",
+  "header", "hero", "quickstrip", "about", "services", "materials", "experience",
+  "realisations", "formation", "languagesSafety", "contact", "footer",
 ];
+
+export { pageContent };
