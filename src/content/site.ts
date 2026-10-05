@@ -1,4 +1,3 @@
-// All editable site content lives here (mappable later to Shopify section settings).
 import hero from "@/assets/hero.jpg";
 import about1 from "@/assets/about1.jpg";
 import about2 from "@/assets/about2.jpg";
@@ -19,17 +18,50 @@ import tMani from "@/assets/t-manifold.jpg";
 import tPomp from "@/assets/t-pompe.jpg";
 import pColl from "@/assets/p-collecteur.jpg";
 import pCe from "@/assets/p-chauffeeau.jpg";
+import pageContent from "./published-page.json";
 
-export const contact = {
-  phone: "+213 673 802 142",
-  phoneHref: "tel:+213673802142",
-  whatsapp: "https://wa.me/213673802142",
-  email: "yousefkhelifi2803@gmail.com",
-  cvUrl: "#", // Replace with the CV PDF URL
-  location: "Barika, Algérie",
+const assetMap: Record<string, string> = {
+  hero,
+  about1,
+  about2,
+  about3,
+  plomberie: sPlomb,
+  chauffage: sChauf,
+  gaz: sGaz,
+  climatisation: sClim,
+  multicouche: mMulti,
+  ppr: mPpr,
+  pvc: mPvc,
+  cuivre: mCu,
+  "acier-noir": mAcier,
+  polyfuseur: tPoly,
+  chalumeau: tChal,
+  sertir: tSert,
+  manifold: tMani,
+  pompe: tPomp,
+  collecteur: pColl,
+  "chauffe-eau": pCe,
 };
 
-export const images = { hero, about1, about2, about3, certificate: "" as string };
+export const resolveImage = (value?: string) => {
+  if (!value) return hero;
+  if (/^(https?:\/\/|\/)$/i.test(value)) return value;
+  return assetMap[value] ?? value;
+};
+
+export const contact = {
+  phone: pageContent.contact?.phone ?? "+213 673 802 142",
+  phoneHref:
+    "tel:" + (pageContent.contact?.phone ?? "+213 673 802 142").replace(/\s+/g, ""),
+  whatsapp: pageContent.contact?.whatsapp
+    ? "https://wa.me/" + pageContent.contact.whatsapp.replace(/\D/g, "")
+    : "https://wa.me/213673802142",
+  email: pageContent.contact?.email ?? "yousefkhelifi2803@gmail.com",
+  cvUrl: pageContent.contact?.cvUrl || "#",
+  location: pageContent.hero?.location ?? "Barika, Algérie",
+};
+
+export const header = pageContent.header;
 
 export const nav = [
   { id: "accueil", label: "Accueil" },
@@ -41,57 +73,77 @@ export const nav = [
   { id: "contact", label: "Contact" },
 ];
 
-export const services = [
-  { key: "plomb", title: "Plomberie sanitaire", short: "Installation et réparation", desc: "Installation, réparation, appareils sanitaires", img: sPlomb },
-  { key: "chauf", title: "Chauffage central", short: "Installation et entretien", desc: "Radiateurs, chaudières, circulateurs, entretien", img: sChauf },
-  { key: "gaz", title: "Réseaux de gaz", short: "Installation et contrôle", desc: "Installation, contrôle d'étanchéité, dépannage", img: sGaz },
-  { key: "clim", title: "Climatisation split", short: "Pose et maintenance", desc: "Pose, entretien, charge en fluide", img: sClim },
+export const images = {
+  hero: resolveImage(pageContent.hero?.image),
+  about1: resolveImage(pageContent.about?.image1),
+  about2: resolveImage(pageContent.about?.image2),
+  about3: resolveImage(pageContent.about?.image3),
+  certificate: pageContent.formation?.certificateImage
+    ? resolveImage(pageContent.formation.certificateImage)
+    : "",
+};
+
+export const hero = pageContent.hero;
+
+export const services = (pageContent.services ?? []).map((s) => ({
+  ...s,
+  img: resolveImage(s.img),
+})) as Array<{
+  key: string;
+  title: string;
+  short: string;
+  desc: string;
+  img: string;
+}>;
+
+export const materials = (pageContent.materials ?? []).map((m) => ({
+  ...m,
+  img: resolveImage(m.img),
+}));
+
+export const tools = (pageContent.tools ?? []).map((t) => ({
+  ...t,
+  img: resolveImage(t.img),
+}));
+
+export const experience = pageContent.experience ?? [];
+
+export const projectCategories = [
+  "Tous",
+  "Plomberie",
+  "Chauffage",
+  "Gaz",
+  "Climatisation",
+  "Chantiers",
 ] as const;
 
-export const materials = [
-  { title: "Multicouche", img: mMulti },
-  { title: "PPR", img: mPpr },
-  { title: "PVC", img: mPvc },
-  { title: "Cuivre", img: mCu },
-  { title: "Acier noir", img: mAcier },
-];
+export const projects = (pageContent.realisations?.projects ?? []).map((p) => ({
+  ...p,
+  img: resolveImage(p.image),
+}));
 
-export const tools = [
-  { title: "Polyfuseur PPR", img: tPoly },
-  { title: "Chalumeau oxyacétylénique", img: tChal },
-  { title: "Pince à sertir multicouche", img: tSert },
-  { title: "Manifold", img: tMani },
-  { title: "Pompe à vide", img: tPomp },
-];
+export const realisations = pageContent.realisations;
 
-export const experience = [
-  { period: "2019 — Aujourd'hui", title: "Plombier-chauffagiste, installateur gaz et CVC indépendant", place: "Barika, Algérie", note: "Chantiers dans d'autres villes" },
-  { period: "2022 — 2023", title: "Ensemble de logements sociaux", place: "Bab Ezzouar, Alger", note: "Environ 8 mois", highlight: "≈100 climatiseurs split installés en autonomie avant livraison." },
-  { period: "2024", title: "École", place: "Boukhtab (El Bayadh)" },
-  { period: "2024 — 2025", title: "Rénovation de logements", place: "Biskra" },
-];
+export const formation = pageContent.formation;
 
-export const projectCategories = ["Tous", "Plomberie", "Chauffage", "Gaz", "Climatisation", "Chantiers"] as const;
+export const languagesSafety = pageContent.languagesSafety;
+export const languages = pageContent.languagesSafety?.languages ?? [];
+export const safety = pageContent.languagesSafety?.safety ?? [];
 
-export const projects = [
-  { title: "Collecteur chauffage central", cats: ["Chauffage", "Chantiers"], img: pColl },
-  { title: "Réseaux d'eau et évacuation", cats: ["Plomberie", "Chantiers"], img: mPvc },
-  { title: "Installation climatiseurs", cats: ["Climatisation", "Chantiers"], img: sClim },
-  { title: "Tuyauterie gaz en cuivre", cats: ["Gaz"], img: sGaz },
-  { title: "Chauffe-eau et plomberie", cats: ["Plomberie"], img: pCe },
-  { title: "Réparation et entretien", cats: ["Plomberie", "Chauffage"], img: sChauf },
-];
+export const about = pageContent.about;
+export const finalContact = pageContent.contact;
 
-export const languages = [
-  { name: "Arabe", level: "Langue maternelle" },
-  { name: "Français", level: "B1" },
-  { name: "Anglais", level: "B1" },
-];
-
-export const safety = [
-  "Port des EPI : gants, lunettes, chaussures de sécurité",
-  "Contrôle d'étanchéité avant mise en service du gaz",
-  "Coupure de l'eau ou du gaz avant intervention",
-  "Vigilance lors des travaux en hauteur",
-  "Respect des normes et bonnes pratiques",
+export const sectionOrder = pageContent.sectionOrder ?? [
+  "header",
+  "hero",
+  "quickstrip",
+  "about",
+  "services",
+  "materials",
+  "experience",
+  "realisations",
+  "formation",
+  "languagesSafety",
+  "contact",
+  "footer",
 ];
