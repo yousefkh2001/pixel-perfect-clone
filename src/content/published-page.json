@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "sectionOrder": [
+    "header",
+    "hero",
+    "quickstrip",
+    "about",
+    "services",
+    "materials",
+    "experience",
+    "realisations",
+    "formation",
+    "languagesSafety",
+    "contact",
+    "footer"
+  ],
+  "header": {
+    "name": "YOUCEF KHELIFI",
+    "professionalTitle": "Plombier-chauffagiste | Installateur CVC",
+    "cvUrl": "#"
+  },
+  "hero": {
+    "eyebrow": "ARTISAN QUALIFIÉ",
+    "firstName": "YOUCEF",
+    "lastName": "KHELIFI",
+    "title": "Plombier-chauffagiste | Installateur CVC",
+    "description": "Spécialisé en plomberie sanitaire, chauffage central, réseaux de gaz et climatisation. Une expérience solide sur des chantiers résidentiels et institutionnels.",
+    "location": "Barika, Algérie",
+    "availability": "Disponible pour une opportunité en Europe à partir de 2027",
+    "image": "hero",
+    "mobileImage": "hero",
+    "experienceNumber": "7+",
+    "experienceLabel": "ans d'expérience",
+    "phone": "+213 673 802 142",
+    "whatsapp": "+213673802142",
+    "email": "yousefkhelifi2803@gmail.com",
+    "cvUrl": "#"
+  },
+  "about": {
+    "eyebrow": "À propos de moi",
+    "title": "Un artisan passionné et qualifié",
+    "text1": "Plombier-chauffagiste indépendant depuis 2019, formé au métier dès l'âge de 14 ans. Expérience en alimentation en eau sanitaire, évacuation, réseaux de gaz, chauffage central et climatisation split, chez des particuliers, sur des chantiers de logements et dans une école.",
+    "text2": "Autonome ou en équipe, respectueux des règles de sécurité, équipé de son propre outillage et toujours soucieux d'un travail soigné et durable.",
+    "image1": "about1",
+    "image2": "about2",
+    "image3": "about3"
+  },
+  "services": [
+    {
+      "key": "plomb",
+      "title": "Plomberie sanitaire",
+      "short": "Installation et réparation",
+      "desc": "Installation, réparation, appareils sanitaires",
+      "img": "plomberie"
+    },
+    {
+      "key": "chauf",
+      "title": "Chauffage central",
+      "short": "Installation et entretien",
+      "desc": "Radiateurs, chaudières, circulateurs, entretien",
+      "img": "chauffage"
+    },
+    {
+      "key": "gaz",
+      "title": "Réseaux de gaz",
+      "short": "Installation et contrôle",
+      "desc": "Installation, contrôle d'étanchéité, dépannage",
+      "img": "gaz"
+    },
+    {
+      "key": "clim",
+      "title": "Climatisation split",
+      "short": "Pose et maintenance",
+      "desc": "Pose, entretien, charge en fluide",
+      "img": "climatisation"
+    }
+  ],
+  "materials": [
+    {
+      "title": "Multicouche",
+      "img": "multicouche"
+    },
+    {
+      "title": "PPR",
+      "img": "ppr"
+    },
+    {
+      "title": "PVC",
+      "img": "pvc"
+    },
+    {
+      "title": "Cuivre",
+      "img": "cuivre"
+    },
+    {
+      "title": "Acier noir",
+      "img": "acier-noir"
+    }
+  ],
+  "tools": [
+    {
+      "title": "Polyfuseur PPR",
+      "img": "polyfuseur"
+    },
+    {
+      "title": "Chalumeau oxyacétylénique",
+      "img": "chalumeau"
+    },
+    {
+      "title": "Pince à sertir multicouche",
+      "img": "sertir"
+    },
+    {
+      "title": "Manifold",
+      "img": "manifold"
+    },
+    {
+      "title": "Pompe à vide",
+      "img": "pompe"
+    }
+  ],
+  "experience": [
+    {
+      "period": "2019 — Aujourd'hui",
+      "title": "Plombier-chauffagiste, installateur gaz et CVC indépendant",
+      "location": "Barika, Algérie",
+      "note": "Chantiers dans d'autres villes",
+      "highlight": ""
+    },
+    {
+      "period": "2022 — 2023",
+      "title": "Ensemble de logements sociaux",
+      "location": "Bab Ezzouar, Alger",
+      "note": "Environ 8 mois",
+      "highlight": "≈100 climatiseurs split installés en autonomie avant livraison."
+    },
+    {
+      "period": "2024",
+      "title": "École",
+      "location": "Boukhtab (El Bayadh)",
+      "note": "",
+      "highlight": ""
+    },
+    {
+      "period": "2024 — 2025",
+      "title": "Rénovation de logements",
+      "location": "Biskra",
+      "note": "",
+      "highlight": ""
+    }
+  ],
+  "realisations": {
+    "eyebrow": "Réalisations",
+    "title": "Types de travaux réalisés",
+    "note": "Images illustratives — remplacez-les par vos photos de chantiers.",
+    "projects": [
+      {
+        "title": "Collecteur chauffage central",
+        "category": "Chauffage",
+        "image": "collecteur"
+      },
+      {
+        "title": "Réseaux d'eau et évacuation",
+        "category": "Plomberie",
+        "image": "pvc"
+      },
+      {
+        "title": "Installation climatiseurs",
+        "category": "Climatisation",
+        "image": "climatisation"
+      },
+      {
+        "title": "Tuyauterie gaz en cuivre",
+        "category": "Gaz",
+        "image": "gaz"
+      },
+      {
+        "title": "Chauffe-eau et plomberie",
+        "category": "Plomberie",
+        "image": "chauffe-eau"
+      },
+      {
+        "title": "Réparation et entretien",
+        "category": "Chauffage",
+        "image": "chauffage"
+      }
+    ]
+  },
+  "formation": {
+    "eyebrow": "Formation & certification",
+    "title": "Qualification et parcours de formation",
+    "certificateTitle": "Certificat de qualification professionnelle",
+    "certificateSubtitle": "Installation sanitaire et gaz",
+    "institution": "Centre de formation professionnelle et de l'apprentissage « Chahid Rouichi Slimane »",
+    "date": "Barika, Algérie · Décembre 2025",
+    "description": "Validation des acquis de l'expérience.",
+    "certificateImage": "",
+    "education": "Filière Mathématiques techniques — Génie électrique",
+    "practice": "Formation pratique au métier auprès de plombiers expérimentés dès l'âge de 14 ans."
+  },
+  "languagesSafety": {
+    "languagesTitle": "Langues & mobilité",
+    "languages": [
+      {
+        "name": "Arabe",
+        "level": "Langue maternelle"
+      },
+      {
+        "name": "Français",
+        "level": "B1"
+      },
+      {
+        "name": "Anglais",
+        "level": "B1"
+      }
+    ],
+    "mobility": "Permis B · Conduite régulière · Véhicule personnel utilisé pour le travail",
+    "safetyTitle": "Sécurité & méthodes de travail",
+    "safety": [
+      {
+        "text": "Port des EPI : gants, lunettes, chaussures de sécurité"
+      },
+      {
+        "text": "Contrôle d'étanchéité avant mise en service du gaz"
+      },
+      {
+        "text": "Coupure de l'eau ou du gaz avant intervention"
+      },
+      {
+        "text": "Vigilance lors des travaux en hauteur"
+      },
+      {
+        "text": "Respect des normes et bonnes pratiques"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Une opportunité en Europe ?",
+    "description": "Je suis motivé et prêt à rejoindre votre équipe à partir de 2027.",
+    "phone": "+213 673 802 142",
+    "whatsapp": "+213673802142",
+    "email": "yousefkhelifi2803@gmail.com",
+    "cvUrl": "#"
+  }
+}
