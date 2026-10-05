@@ -85,6 +85,54 @@
 .yk-preview-toolbar > span { font-size: 10px; font-weight: 800; color: #526170; }
 .yk-preview-note { color: #98a3ae !important; font-weight: 600 !important; }
 
+.yk-preview-devices button {
+  min-width: 56px;
+  width: auto;
+  height: 29px;
+  padding: 0 7px;
+  border: 1px solid #e1e7ec;
+  border-radius: 5px;
+  background: #fff;
+  color: #677486;
+  font: 800 8px Manrope, Inter, system-ui, sans-serif;
+  cursor: pointer;
+}
+.yk-preview-devices button.is-active {
+  background: #0b1f36;
+  border-color: #0b1f36;
+  color: #fff;
+}
+.yk-preview-stage {
+  width: 100%;
+  min-height: calc(100vh - 150px);
+  overflow: auto;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid #dfe5ea;
+  border-radius: 10px;
+  background: #e9eef2;
+}
+.yk-preview-frame {
+  background: #fff;
+  width: 1440px;
+  min-width: 1440px;
+  box-shadow: 0 15px 40px rgba(11,31,54,.12);
+}
+.yk-preview-stage--tablet .yk-preview-frame {
+  width: 768px;
+  min-width: 768px;
+}
+.yk-preview-stage--mobile .yk-preview-frame {
+  width: 390px;
+  min-width: 390px;
+}
+.yk-preview-stage--desktop .yk-preview-frame {
+  width: 1440px;
+  min-width: 1440px;
+}
+
 .yk-canvas-page {
   width: min(100%, 980px); min-height: 850px; margin: 0 auto; padding: 14px;
   border: 1px solid #dde4e9; border-radius: 10px; background: #fff;
